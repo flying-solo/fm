@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   const app = useRef(null);
   useEffect(() => {
-    const scroller = app.current.addEventListener("wheel", (e) => {
+    const scroller = app.current.addEventListener("touchmove", (e) => {
       console.log(app.current.scrollLeft);
       if (e.deltaY >= 0 && app.current.getBoundingClientRect().top === 0) {
         app.current.scrollLeft += e.deltaY;
@@ -16,7 +16,7 @@ function App() {
     });
 
     return () => {
-      app.current.removeEventListener("wheel", scroller);
+      app.current.removeEventListener("touchmove", scroller);
     };
   }, [app.current]);
 

@@ -1,4 +1,4 @@
-.progress-bar {
+.overlay{
   position: fixed;
   top: 0;
   left: 0;
@@ -6,6 +6,12 @@
   height: 100vh;
   background: red;
   transform-origin: 0%;
+  color: white;
+  padding: 3rem;
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.12rem;
+  translate: 0%;
 }
 
 .div1{

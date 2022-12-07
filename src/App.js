@@ -11,17 +11,16 @@ function App() {
 
   return (
     <>
-      <motion.div
-        className="progress-bar"
-        style={{ scaleX: scrollYProgress }}
-      />
+      <motion.div className="overlay" style={{ scaleX: scrollYProgress }}>
+        Div 3
+      </motion.div>
       <div className="app">
         <div className="div1"> initial div 1</div>
         <div className="div2">
-          <div className="finaldiv2">
-            medium div 2
+          <div className="finaldiv2">medium div 2</div>
+          <div className="behind" ref={ref}>
+            behind
           </div>
-          <div className="behind" ref={ref}>behind</div>
         </div>
         {/* <div className="finalDiv">final Div</div> */}
       </div>

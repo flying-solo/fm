@@ -1,40 +1,31 @@
-import { useEffect } from "react";
-import { useRef } from "react";
 import "./App.css";
+import { motion, useScroll } from "framer-motion";
+import { useRef } from "react";
 
 function App() {
-  const app = useRef(null);
-  useEffect(() => {
-    const scroller = app.current.addEventListener("wheel", (e) => {
-      console.log(app.current.scrollLeft);
-      if (e.deltaY >= 0 && app.current.getBoundingClientRect().top === 0) {
-        app.current.scrollLeft += e.deltaY;
-      } else if (e.deltaY < 0 && app.current.scrollLeft !== 0) {
-        e.preventDefault();
-        app.current.scrollLeft += e.deltaY;
-      }
-    });
-
-    return () => {
-      app.current.removeEventListener("wheel", scroller);
-    };
-  }, [app.current]);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"],
+  });
 
   return (
-    <div className="App">
-      <div className="div1">
-        Div Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-        delectus nihil eum consequuntur corrupti, quasi nesciunt corporis enim
-        nostrum expedita possimus saepe laborum repellat magnam dolorum,
-        necessitatibus porro quos perspiciatis culpa molestiae voluptatibus illo
-        voluptas harum numquam! Ipsum laborum autem aut? Laborum dolores
-        molestiae cumque enim, delectus reprehenderit qui laboriosam.
+    <>
+      <motion.div
+        className="progress-bar"
+        style={{ scaleX: scrollYProgress }}
+      />
+      <div className="app">
+        <div className="div1"> initial div 1</div>
+        <div className="div2">
+          <div className="finaldiv2">
+            medium div 2
+          </div>
+          <div className="behind" ref={ref}>behind</div>
+        </div>
+        {/* <div className="finalDiv">final Div</div> */}
       </div>
-      <div className="div2" ref={app}>
-        <div className="div21">Div 1</div>
-        <div className="div22">Div 2</div>
-      </div>
-    </div>
+    </>
   );
 }
 
